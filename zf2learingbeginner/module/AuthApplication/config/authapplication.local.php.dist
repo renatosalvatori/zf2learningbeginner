@@ -1,0 +1,35 @@
+<?php
+return array(
+	 'acl' => array(
+    		/**
+    		 * Access Control List
+    		 * -------------------
+    		*/
+  
+    		'resources' => array(
+    				'allow' => array(
+    						'AuthApplication\Controller\Login' => array(
+    								'login'	=> 'guest',
+    								'logout'	=>'member',
+    						),
+    						'AuthApplication\Controller\Index' => array(
+    								'index'	=> 'member',
+    						),
+    						'AuthApplication\Controller\Register' => array(
+    								'register'	=> 'guest',
+    								'edit'	=> 'member',
+    								'changepassword'=>'member',
+    								'loadImage'=>'member'
+    						),
+    				),
+    				'deny' => array(
+    						 
+    				)
+    		)
+    )
+
+)
+
+
+
+?>

@@ -1,0 +1,74 @@
+<?php 
+?>
+<div class="container">
+        <div class="row">
+             <div class="control-group">
+                       <div class="controls">
+                            <?php
+                            if (!empty($this->successMessages)) {
+                                foreach ($this->successMessages as $msg) {
+                                    ?>
+                                    <div class="alert alert-success alert-dismissable">
+                                        <button type="button" class="close" data-dismiss="alert"
+                                                aria-hidden="true">&times;</button>
+                                        <?= $msg; ?>
+                                    </div>
+                                <?php
+                                }
+                            }
+                            if (!empty($this->errorMessages)) {
+                                foreach ($this->errorMessages as $msg) {
+                                    ?>
+                                    <div class="alert alert-error alert-dismissable">
+                                        <button type="button" class="close" data-dismiss="alert"
+                                                aria-hidden="true">&times;</button>
+                                        <?= $msg; ?>
+                                    </div>
+                                <?php
+                                }
+                            }
+                            ?>
+                    </div>
+             </div>
+        </div>
+        <div class="row">
+            <div class="span6 offset3 well">
+        	<h3>Please Enter Login Details</h3>
+                <?php
+                
+                $loginform->prepareElements();
+                $loginform->setAttribute('action', $this->url('auth-login',array('action'=>'login')));
+                $loginform->setAttribute('method', 'POST');
+                $username = $loginform->get('USERNAME');
+                $password = $loginform->get('PASSWORD');
+                $submit = $loginform->get('submit');
+                ?>
+                <?php echo $this->form()->openTag($loginform);
+                ?>
+                <table>
+                		<tr>
+                			<td>   <?php echo $this->formLabel($username); ?>
+                	               <?php echo $this->formInput($username); ?>
+                	               <?php echo $this->formElementErrors($username); ?>
+                	       </td>
+                		</tr>
+                		<tr>
+                			<td>   <?php echo $this->formLabel($password); ?>
+                	               <?php echo $this->formInput($password); ?>
+                	               <?php echo $this->formElementErrors($password); ?>
+                	       </td>
+                		</tr>
+                		<tr>
+                			<td><?php echo $this->formSubmit($submit);?></td>
+                		</tr>
+                </table>
+                <?php echo $this->form()->closeTag(); ?>
+                <a href="<?php echo $this->url('auth-user/default',array('action'=>'register'));?>">New User</a>
+            </div>
+      </div>
+      
+</div>
+
+
+
+

@@ -1,0 +1,29 @@
+<?php 
+$form=$this->formSearch;
+?>
+<?php echo $this->form()->openTag($form) ?>
+<tr>
+	<th colspan="3">
+		<button type="submit" class="btn btn-primary"><?php echo $this->translate('Filter');?></button>&nbsp;
+		<button type="submit" class="btn btn-primary" id="pulisci_filtro"><?php echo $this->translate('Clear');?></button>
+		<button type="button" class="btn btn-primary" id="nuovo_post"><?php echo $this->translate('Add Post');?></button>
+		</a>
+				
+	</th>
+	<th><?php echo $this->formSelect($form->get('CATEGORY_ID')->setValue($filtri['CATEGORY_ID']));?></th>
+	<th><?php echo $this->formSelect($form->get('PRODUCT_ID')->setValue($filtri['PRODUCT_ID']));?></th>
+</tr>
+<?php echo $this->form()->closeTag() ?>
+
+<script type="text/javascript">
+$(function(){
+	$('#pulisci_filtro').click(function(){
+		$('#CATEGORY_ID').val('');
+		$('#PRODUCT_ID').val('');
+	});
+
+	$('#nuovo_post').click(function(){
+		window.location.href = "<?php echo $this->serverUrl().$this->url('blog/manage', array('controller'=>'blog','action' => 'manage', 'id' => 0));?>";
+	});
+});
+</script>

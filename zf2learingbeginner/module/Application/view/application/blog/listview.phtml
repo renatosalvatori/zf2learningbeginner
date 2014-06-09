@@ -1,0 +1,69 @@
+<div class="container">
+	<div class="row">
+             <div class="control-group">
+                       <div class="controls">
+                            <?php
+                            if (!empty($this->successMessages)) {
+                                foreach ($this->successMessages as $msg) {
+                                    ?>
+                                    <div class="alert alert-success alert-dismissable">
+                                        <button type="button" class="close" data-dismiss="alert"  aria-hidden="true">&times;</button>
+                                        <?= $msg; ?>
+                                    </div>
+                                <?php
+                                }
+                            }
+                            ?>
+                       </div>
+             </div>
+    </div>
+    <div class="row">
+		<div class="widget stacked ">
+			<div class="widget-header">
+				<i class="shortcut-icon  icon-folder-open"></i>
+				<span class="shortcut-label"><?php echo $this->translate('Grid Blog');?> </span>
+			</div>
+			<div class="widget-content">
+				<table class="table table-bordered table-striped">
+					<thead>
+						<?php echo $this->search;?>
+						<tr>
+							<th><?php echo $this->translate('TITLE');?></th>
+							<th><?php echo $this->translate('CONTENT');?></th>
+							<th><?php echo $this->translate('CATEGORY');?></th>
+							<th><?php echo $this->translate('PRODUCT');?></th>
+							<th><?php echo $this->translate('Action');?></th>
+						</tr>
+					</thead>
+					<tbody>
+						<?php foreach ($this->grigliaPaginator as $griglia):?> 
+							<tr>
+								<td><?php echo $this->escapeHtml($griglia['TITLE']); ?></td>
+								<td><?php echo $this->escapeHtml($griglia['CONTENT']); ?></td>
+								<td><?php echo $this->escapeHtml($griglia['CAT_DESCRIPTION']); ?></td>
+								<td><?php echo $this->escapeHtml($griglia['PROD_DESCRIPTION']); ?></td>
+								<td>
+									<?php if($this->IsAllowed('blog_usergrid','edit')) : ?>
+									<a href="<?php echo $this->url('blog/manage', array('controller'=>'blog','action' => 'manage', 'id' => $griglia['ID'])); ?>"><i class="icon-pencil"></i></a>
+									<?php else:?>
+									 <i class="icon-ban-circle"></i>
+									<?php endif;?>
+									<?php if($this->IsAllowed('blog_usergrid','delete')) : ?>
+									<a href="<?php echo $this->url('blog/delete', array('controller'=>'blog', 'action' => 'delete', 'id' =>$griglia['ID'])); ?>" onclick="return confirm('Are you sure?')"><i class="icon-trash"></i></a>
+									<?php else:?>
+									 <i class="icon-ban-circle"></i>
+									<?php endif;?>
+								</td>
+							</tr>
+						<?php endforeach;?>
+					</tbody>
+				</table>
+				<?php echo $this->paginationControl($this->grigliaPaginator,'Sliding', 
+						'application/paginator/search_pagination.phtml',
+						array('route' => 'blog/paginator-blog')); ?>
+			</div>
+		</div>
+	</div>
+</div>
+<?php 
+?>

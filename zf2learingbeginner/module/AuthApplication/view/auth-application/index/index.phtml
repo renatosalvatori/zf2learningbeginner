@@ -1,0 +1,40 @@
+<div class="container">
+        <div class="row">
+             <div class="control-group">
+                       <div class="controls">
+                            <?php
+                            if (!empty($this->successMessages)) {
+                                foreach ($this->successMessages as $msg) {
+                                    ?>
+                                    <div class="alert alert-success alert-dismissable">
+                                        <button type="button" class="close" data-dismiss="alert"  aria-hidden="true">&times;</button>
+                                        <?= $msg; ?>
+                                    </div>
+                                <?php
+                                }
+                            }
+                            ?>
+                       </div>
+             </div>
+             <div class="control-group">
+                       <div class="controls">                      
+                                <?php if($this->profile instanceof \stdClass):?>
+                                 <div>
+                                 	<div class="span6 offset3 well">
+                                 	 Benvenuto :<strong><?php echo $this->profile->FIRSTNAME ;?>  <?php echo $this->profile->LASTNAME ;?></strong>
+                                 	 Il tuo profilo è :<?php  echo $this->profile->ROLE;?>
+                                 	 <?php if($this->profile->PICTURE):?>
+                                 	 	<?php // echo $this->loadImage($this->profile->PICTURE);?>
+                                 	 	<img src="<?php echo $this->url('auth-user/default',array('action'=>'loadImage'));?>">
+                                 	 <?php endif;?>
+                                 	 <br /><br />
+                                 	<a href="<?php echo $this->url('auth-user/default',array('action'=>'changepassword','id'=>$this->profile->ID));?>">Update Password</a> 
+                                 	| 
+                                 	<a href="<?php echo $this->url('auth-user/default',array('action'=>'edit','id'=>$this->profile->ID));?>">Update Profile</a> 
+                                 	</div>
+                                 </div>
+                                <?php endif;?>
+                       </div>
+             </div>
+        </div>
+</div>
