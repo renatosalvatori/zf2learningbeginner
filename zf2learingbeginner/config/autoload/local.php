@@ -16,7 +16,7 @@ return array(
     		'driver' => 'Pdo_Mysql', //The database driver. Mysqli, Sqlsrv, Pdo_Sqlite, Pdo_Mysql, Pdo=OtherPdoDriver
     		'database' => 'zf2learningbeginner', // 	generally required 	the name of the database (schema)
     		'username' => 'root', // generally required 	the connection username
-    		'password' => 'poi890', // 	generally required 	the connection password
+    		'password' => 'password', // 	generally required 	the connection password
     		'hostname' => 'localhost', // not generally required 	the IP address or hostname to connect to
     		// 'port' => 1234,  	// not generally required 	the port to connect to (if applicable)
     		// 'charset' => 'utf8',  //	not generally required 	the character set to use
